@@ -9,7 +9,6 @@ public abstract class Vehicle {
 	String type;
 	
 	
-
 	public Vehicle(String brand, String name, String age, String type) {
 		super();
 		this.brand = brand;

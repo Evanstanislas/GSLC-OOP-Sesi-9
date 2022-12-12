@@ -10,7 +10,7 @@ public class Car extends Vehicle{
 	@Override
 	public void Sound() {
 		// TODO Auto-generated method stub
-		System.out.println("Vroommmm, your " + this.name + " has been heated up");
+		System.out.println("Vroommmm, your " + this.brand + " " + this.name + " has been heated up");
 	}
 	
 	

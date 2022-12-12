@@ -25,7 +25,7 @@ public class Main {
 		brand= scan.nextLine();
 		System.out.println("What's the name?");
 		name= scan.nextLine();
-		System.out.println("When this is made?");
+		System.out.println("When was the vehicle built?");
 		age= scan.nextLine();
 		
 		do {
@@ -38,7 +38,18 @@ public class Main {
 			System.out.println("A new car has been added");
 		}
 		else if(type.equals("Airplane")) {
-			VehList.add(new Airplane(brand, name, age, type));
+			int Enginenum;
+			String Enginetype;
+			System.out.println("How many engines do you have?");
+			Enginenum= scan.nextInt();
+			scan.nextLine();
+			
+			do {
+				System.out.println("What's the engine type? [Turbofan | Turboprop | Turbojet]");
+				Enginetype= scan.nextLine();
+			} while(!Enginetype.equals("Turbofan")&&!Enginetype.equals("Turboprop")&&!Enginetype.equals("Turbojet"));
+			
+			VehList.add(new Airplane(brand, name, age, type, Enginenum, Enginetype));
 			System.out.println("An new airplane has been added");
 		}
 		else if(type.equals("Truck")) {
@@ -74,17 +85,21 @@ public class Main {
 			System.out.println("There's no vehicle");
 			return;
 		}
+		
 		String NameCheck;
-		System.out.println("Select a vehicle to be heated up");
+		System.out.println("Select a vehicle to be heated up [type all to heat all of them]");
 		NameCheck= scan.nextLine();
 		
-		for (Vehicle V : VehList) {
-			if(V.getName().equals(NameCheck)) {
+		if(NameCheck.equals("all")) {
+			for (Vehicle V : VehList) {
 				V.Sound();
 			}
-			else {
-				System.out.println("We can't find the vehicle to be heated up");
-				break;
+		}
+		else {
+			for (Vehicle V : VehList) {
+				if(V.getName().equals(NameCheck)) {
+					V.Sound();
+				}
 			}
 		}
 	}

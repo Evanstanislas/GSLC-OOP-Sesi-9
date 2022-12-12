@@ -10,7 +10,7 @@ public class Motorcycle extends Vehicle{
 	@Override
 	public void Sound() {
 		// TODO Auto-generated method stub
-		System.out.println("BREEM, your " +this.name + " has been heated up");
+		System.out.println("BREEM, your " + this.brand + " " + this.name + " has been heated up");
 	}
 	
 }
