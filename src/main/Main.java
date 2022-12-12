@@ -5,14 +5,17 @@ import java.util.Scanner;
 import vehicle.*;
 
 public class Main {
+	//Membuat scanner dan arraylist terlebih dahulu
 	Scanner scan= new Scanner(System.in);
 	ArrayList<Vehicle> VehList= new ArrayList<>();
 	
+	//metode untuk memberi break agar program bisa lebih realistis dan tidak menjadi terasa terlalu cepat
 	public final void pressEnter() {
 		System.out.println("Press Enter to continue...");
 		scan.nextLine();
 	}
 	
+	//Fungsi untuk membuat kendaraan baru
 	public void NewVehicle() {
 		String brand;
 		String name;
@@ -49,6 +52,7 @@ public class Main {
 		
 	}
 	
+	//Melihat kendaraan apa saja yang sudah dimiliki
 	public void ShowVehicle() {
 		if (VehList.isEmpty()) {
 			System.out.println("You haven't created your vehicle yet man");
@@ -64,6 +68,7 @@ public class Main {
 		
 	}
 	
+	//Fungsi untuk memanaskan kendaraan (Memanaskan mesin)
 	public void Heating() {
 		if (VehList.isEmpty()){
 			System.out.println("There's no vehicle");
@@ -84,6 +89,7 @@ public class Main {
 		}
 	}
 	
+	//Menu utama
 	public void MainMenu() {
 		int Menu;
 		do {
@@ -120,6 +126,7 @@ public class Main {
 		}while(Menu!=4);
 	}
 	
+	//Bagian pertama untuk menjalankan program, semua dimulai dari sini
 	public Main() {
 		MainMenu();
 	}

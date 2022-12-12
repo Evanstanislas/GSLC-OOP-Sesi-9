@@ -1,5 +1,7 @@
 package vehicle;
 
+
+//Kelas abstrak yang terdiri dari merek, nama, tahun dibuat dan tipe
 public abstract class Vehicle {
 	String brand;
 	String name;
@@ -16,6 +18,8 @@ public abstract class Vehicle {
 		this.type= type;
 	}
 
+	
+	//Setter getter
 	public String getBrand() {
 		return brand;
 	}
@@ -47,6 +51,8 @@ public abstract class Vehicle {
 	public void setType(String type) {
 		this.type = type;
 	}
+	
+	//Metode abstrak
 	public abstract void Sound();
 	
 }
