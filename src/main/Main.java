@@ -29,9 +29,9 @@ public class Main {
 		age= scan.nextLine();
 		
 		do {
-			System.out.println("Now, what is the type? [Car | Airplane | Truck | Motorcycle]");
+			System.out.println("Now, what is the type? [Car | Airplane | Truck | Motorcycle | Bus]");
 			type= scan.nextLine();
-		} while(!type.equals("Car")&& !type.equals("Airplane") && !type.equals("Truck") && !type.equals("Motorcycle"));
+		} while(!type.equals("Car")&& !type.equals("Airplane") && !type.equals("Truck") && !type.equals("Motorcycle")&& !type.equals("Bus"));
 		
 		if(type.equals("Car")) {
 			VehList.add(new Car(brand, name, age, type));
@@ -59,6 +59,10 @@ public class Main {
 		else if(type.equals("Motorcycle")) {
 			VehList.add(new Motorcycle(brand, name, age, type));
 			System.out.println("A new motorcycle has been added");
+		}
+		else if(type.equals("Bus")) {
+			VehList.add(new Bus(brand, name, age, type));
+			System.out.println("A new bus has been added");
 		}
 		
 	}
@@ -104,6 +108,38 @@ public class Main {
 		}
 	}
 	
+	public boolean Aircheck() {
+		for (Vehicle vehicle : VehList) {
+			if(vehicle.getType().equals("Airplane")) {
+				return false;
+			}
+		}
+		return true;
+		
+	}
+	
+	//Menu 5, membuat registrasi pesawat
+	public void Regis() {
+		String regis = "";
+		if(VehList.isEmpty()&& Aircheck()) {
+			System.out.println("Error, you either don't have a vehicle or you don't have an airplane");
+			return;
+		}
+		else {
+			
+			String Regischeck;
+			System.out.println("Pick a plane to be registered...");
+			Regischeck=scan.nextLine();
+			for (Vehicle V : VehList) {
+				if(V.getName().equals(Regischeck)) {
+					regis= ((Airplane) V).CreateRegis();
+				}
+			}
+			
+			System.out.println("Done, " + regis + " is your registration");
+		}
+	}
+	
 	//Menu utama
 	public void MainMenu() {
 		int Menu;
@@ -113,7 +149,8 @@ public class Main {
 			System.out.println("1. Create a new Vehicle");
 			System.out.println("2. Show my vehicle(s)");
 			System.out.println("3. Heat your vehicle up");
-			System.out.println("4. Exit (for now)");
+			System.out.println("4. Make a registration (Airplane only)");
+			System.out.println("5. Exit (for now)");
 			
 			Menu= scan.nextInt();
 			scan.nextLine();
@@ -131,6 +168,10 @@ public class Main {
 					pressEnter();
 					break;
 				case 4:
+					Regis();
+					pressEnter();
+					break;
+				case 5:
 					System.out.println("GOODBYE, so sadge");
 					break;
 				default:
@@ -138,7 +179,7 @@ public class Main {
 					pressEnter();
 					break;
 			}
-		}while(Menu!=4);
+		}while(Menu!=5);
 	}
 	
 	//Bagian pertama untuk menjalankan program, semua dimulai dari sini

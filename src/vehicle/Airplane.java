@@ -1,8 +1,13 @@
 package vehicle;
 
-public class Airplane extends Vehicle{
+import java.util.Random;
+
+import main.AirStuff;
+
+public class Airplane extends Vehicle implements AirStuff{
 	public int Enginenum;
 	public String Enginetype;
+	public String regis= "";
 	public Airplane(String brand, String name, String age, String type, int Enginenum, String Enginetype) {
 		super(brand, name, age, type);
 		this.Enginenum= Enginenum;
@@ -24,5 +29,42 @@ public class Airplane extends Vehicle{
 			}
 		}
 	}
+
+	public int getEnginenum() {
+		return Enginenum;
+	}
+
+	public void setEnginenum(int enginenum) {
+		Enginenum = enginenum;
+	}
+
+	public String getEnginetype() {
+		return Enginetype;
+	}
+
+	public void setEnginetype(String enginetype) {
+		Enginetype = enginetype;
+	}
+
+	public String getRegis() {
+		return regis;
+	}
+
+	public void setRegis(String regis) {
+		this.regis = regis;
+	}
+
+	@Override
+	public String CreateRegis() {
+		Random r= new Random();
+		String regis="PK-"; char temp;
+		for(int a=0;a<3;a++) {
+			temp = (char) ('A'+ r.nextInt(26));
+			regis+=temp;
+		}
+		this.regis=regis;
+		return regis;
+	}
+
 	
 }
