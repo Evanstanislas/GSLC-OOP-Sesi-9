@@ -121,7 +121,7 @@ public class Main {
 	//Menu 5, membuat registrasi pesawat
 	public void Regis() {
 		String regis = "";
-		if(VehList.isEmpty()&& Aircheck()) {
+		if(VehList.isEmpty()|| Aircheck()) {
 			System.out.println("Error, you either don't have a vehicle or you don't have an airplane");
 			return;
 		}
@@ -135,8 +135,14 @@ public class Main {
 					regis= ((Airplane) V).CreateRegis();
 				}
 			}
+			if(regis.equals("")) {
+				System.out.println("Error, you either mistyped your airplane name or it doesn't exist");
+			}
+			else {
+				System.out.println("Done, " + regis + " is your registration");
+				return;
+			}
 			
-			System.out.println("Done, " + regis + " is your registration");
 		}
 	}
 	
