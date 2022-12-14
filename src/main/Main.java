@@ -9,27 +9,27 @@ public class Main {
 	Scanner scan= new Scanner(System.in);
 	ArrayList<Vehicle> VehList= new ArrayList<>();
 	
-	//metode untuk memberi break agar program bisa lebih realistis dan tidak menjadi terasa terlalu cepat
+	//metode untuk memberi break agar program bisa lebih realistis dan tidak terasa terlalu cepat
 	public final void pressEnter() {
 		System.out.println("Press Enter to continue...");
 		scan.nextLine();
 	}
 	
-	//Fungsi untuk membuat kendaraan baru
+	//Fungsi untuk membuat kendaraan baru (Fungsi Menu 1)
 	public void NewVehicle() {
 		String brand;
 		String name;
 		String age;
 		String type;
-		System.out.println("What's the brand?");
+		System.out.print("What's the brand? ");
 		brand= scan.nextLine();
-		System.out.println("What's the name?");
+		System.out.print("What's the name? ");
 		name= scan.nextLine();
-		System.out.println("When was the vehicle built?");
+		System.out.print("When was the vehicle built? ");
 		age= scan.nextLine();
 		
 		do {
-			System.out.println("Now, what is the type? [Car | Airplane | Truck | Motorcycle | Bus]");
+			System.out.print("Now, what is the type? [Car | Airplane | Truck | Motorcycle | Bus] ");
 			type= scan.nextLine();
 		} while(!type.equals("Car")&& !type.equals("Airplane") && !type.equals("Truck") && !type.equals("Motorcycle")&& !type.equals("Bus"));
 		
@@ -38,14 +38,15 @@ public class Main {
 			System.out.println("A new car has been added");
 		}
 		else if(type.equals("Airplane")) {
+			//Jika pesawat maka user harus memberikan beberapa variabel lain
 			int Enginenum;
 			String Enginetype;
-			System.out.println("How many engines do you have?");
+			System.out.print("How many engines do you have? ");
 			Enginenum= scan.nextInt();
 			scan.nextLine();
 			
 			do {
-				System.out.println("What's the engine type? [Turbofan | Turboprop | Turbojet]");
+				System.out.print("What's the engine type? [Turbofan | Turboprop | Turbojet] ");
 				Enginetype= scan.nextLine();
 			} while(!Enginetype.equals("Turbofan")&&!Enginetype.equals("Turboprop")&&!Enginetype.equals("Turbojet"));
 			
@@ -67,23 +68,32 @@ public class Main {
 		
 	}
 	
-	//Melihat kendaraan apa saja yang sudah dimiliki
+	//Melihat kendaraan apa saja yang sudah dimiliki (Fungsi Menu 2)
 	public void ShowVehicle() {
+		//Jika kosong ya print ini
 		if (VehList.isEmpty()) {
 			System.out.println("You haven't created your vehicle yet man");
 			pressEnter();
 			return;
 		}
 		Vehicle index;
-		System.out.printf("| %-4s | %-10s | %-14s | %-20s | %-12s |\n", "No." , "Type" ,"Brand", "Name", "Year made");
+		System.out.printf("| %-4s | %-10s | %-14s | %-20s | %-12s | %-12s |\n", "No." , "Type" ,"Brand", "Name", "Year made", "Registration");
 		for(int a=0; a<VehList.size(); a++) {
 			index= VehList.get(a);
-			System.out.printf("| %-4s | %-10s | %-14s | %-20s | %-12s |\n", a+1 , index.getType(), index.getBrand(), index.getName(), index.getAge());
+			//Kalo pesawat akan juga diprint registrasinya
+			if(index.getType().equals("Airplane")) {
+				System.out.printf("| %-4s | %-10s | %-14s | %-20s | %-12s | %-12s |\n", a+1 , index.getType(), index.getBrand(), index.getName(), index.getAge(), ((Airplane) index).getRegis());
+			}
+			
+			//Kalo bukan pesawat maka akan NA
+			else {
+				System.out.printf("| %-4s | %-10s | %-14s | %-20s | %-12s | %-12s |\n", a+1 , index.getType(), index.getBrand(), index.getName(), index.getAge(), "NA");
+			}
 		}
 		
 	}
 	
-	//Fungsi untuk memanaskan kendaraan (Memanaskan mesin)
+	//Fungsi untuk memanaskan kendaraan (Memanaskan mesin) (MENU 3)
 	public void Heating() {
 		if (VehList.isEmpty()){
 			System.out.println("There's no vehicle");
@@ -91,9 +101,10 @@ public class Main {
 		}
 		
 		String NameCheck;
-		System.out.println("Select a vehicle to be heated up [type all to heat all of them]");
+		System.out.print("Select a vehicle to be heated up [type all to heat all of them] ");
 		NameCheck= scan.nextLine();
 		
+		//Jika isi kata "all" maka semua mesin akan dijalankan
 		if(NameCheck.equals("all")) {
 			for (Vehicle V : VehList) {
 				V.Sound();
@@ -108,6 +119,7 @@ public class Main {
 		}
 	}
 	
+	//Mengecek apakah ada pesawat di dalam ArrayList
 	public boolean Aircheck() {
 		for (Vehicle vehicle : VehList) {
 			if(vehicle.getType().equals("Airplane")) {
@@ -121,6 +133,7 @@ public class Main {
 	//Menu 5, membuat registrasi pesawat
 	public void Regis() {
 		String regis = "";
+		//Jika tidak ada data atau tidak ada pesawat maka akan return
 		if(VehList.isEmpty()|| Aircheck()) {
 			System.out.println("Error, you either don't have a vehicle or you don't have an airplane");
 			return;
@@ -128,7 +141,7 @@ public class Main {
 		else {
 			
 			String Regischeck;
-			System.out.println("Pick a plane to be registered...");
+			System.out.print("Pick a plane to be registered... ");
 			Regischeck=scan.nextLine();
 			for (Vehicle V : VehList) {
 				if(V.getName().equals(Regischeck)) {
@@ -151,13 +164,12 @@ public class Main {
 		int Menu;
 		do {
 			System.out.println("Welcome to your garage");
-			System.out.println("What do you to do");
 			System.out.println("1. Create a new Vehicle");
 			System.out.println("2. Show my vehicle(s)");
 			System.out.println("3. Heat your vehicle up");
 			System.out.println("4. Make a registration (Airplane only)");
 			System.out.println("5. Exit (for now)");
-			
+			System.out.print("What do you want to do? ");
 			Menu= scan.nextInt();
 			scan.nextLine();
 			switch (Menu) {

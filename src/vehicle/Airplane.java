@@ -55,9 +55,10 @@ public class Airplane extends Vehicle implements AirStuff{
 	}
 
 	@Override
+	//Membuat registrasi seperti yang ada di nomor ekor
 	public String CreateRegis() {
 		Random r= new Random();
-		String regis="PK-"; char temp;
+		String regis="PK-"; char temp; //Menggunakan PK- karena kita ada di Indonesia
 		for(int a=0;a<3;a++) {
 			temp = (char) ('A'+ r.nextInt(26));
 			regis+=temp;
@@ -66,5 +67,4 @@ public class Airplane extends Vehicle implements AirStuff{
 		return regis;
 	}
 
-	
 }
