@@ -6,8 +6,8 @@ NIM: 2501972354
 
 Tugas GSLC Sesi 9 OOP LEC
 
-Program ini mampu membuat kendaraan-kendaraan mulai dari mobil, motor, truk dan pesawat.
+Program ini mampu membuat kendaraan-kendaraan mulai dari mobil, motor, truk, bis dan pesawat.
 
-Selain membuat, program ini juga mampu melihat seluruh kendaraan dan juga memanaskan mesin kendaraan tersebut.
+Selain membuat, program ini juga mampu melihat seluruh kendaraan yang telah dimiliki, memanaskan mesin kendaraan tersebut, dan juga dapat membuat registrasi untuk pesawat.
 
 Fungsi fungsi lain akan ditambahkan dalam waktu dekat
